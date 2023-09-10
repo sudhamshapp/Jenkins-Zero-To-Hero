@@ -51,6 +51,7 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install jenkins
 ```
+you can check the jenkins installation using ps -ef | grep jenkins
 
 **Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
 
@@ -118,7 +119,7 @@ sudo apt install docker.io
 
 ```
 sudo su - 
-usermod -aG docker jenkins
+usermod -aG docker jenkins  - granting the permissions to the jenkins users, to create/run containers and pull the images
 usermod -aG docker ubuntu
 systemctl restart docker
 ```
@@ -130,6 +131,13 @@ http://<ec2-instance-public-ip>:8080/restart
 ```
 
 The docker agent configuration is now successful.
+
+Differences
+mvn clean install - if we wanna push enterprise archive, jar/war archive to the artifactory like nexus/jfrog.
+mvn clean package - if we don't have a plan to push on to the artifactory, in my I don't wanna push the the artifact anywhere, I just wanna use in the docker image and publish onto the image repository like dockerhub/ecr
+mvn clean install or mvn clean package look for the pom.xml file
+pom.xml in a nutshell - is responsible for getting the dependencies runtime and building the application
+inside the target folder the artifact is stored
 
 
 
