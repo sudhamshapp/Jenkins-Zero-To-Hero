@@ -40,7 +40,7 @@ Verify Java is Installed
 java -version
 ```
 
-Now, you can proceed with installing Jenkins
+Now, you can proceed with installing Jenkins, apply the complete command as is
 
 ```
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
@@ -49,8 +49,10 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
-sudo apt-get install jenkins
+sudo apt-get install jenkins -y
 ```
+ps -ef | grep jenkins
+
 you can check the jenkins installation using ps -ef | grep jenkins
 
 **Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
@@ -112,7 +114,7 @@ Run the below command to Install Docker
 
 ```
 sudo apt update
-sudo apt install docker.io
+sudo apt install docker.io -y
 ```
  
 ### Grant Jenkins user and Ubuntu user permission to docker deamon.
@@ -134,10 +136,16 @@ The docker agent configuration is now successful.
 
 Differences
 mvn clean install - if we wanna push enterprise archive, jar/war archive to the artifactory like nexus/jfrog.
-mvn clean package - if we don't have a plan to push on to the artifactory, in my I don't wanna push the the artifact anywhere, I just wanna use in the docker image and publish onto the image repository like dockerhub/ecr
-mvn clean install or mvn clean package look for the pom.xml file
+mvn clean package - if we don't have a plan to push on to the artifactory, in my case I don't wanna  the the artifact anywhere, I just wanna use in the docker image and publish onto the image repository like dockerhub/ecr
+mvn clean install or mvn clean package look for the pom.xml filepush
 pom.xml in a nutshell - is responsible for getting the dependencies runtime and building the application
 inside the target folder the artifact is stored
+
+only use the jenkins-master for scheduling purpose and run actual worloads on jenkins-slaves(it's a traditional approach)
+
+use jenkins-master with docker as agents, will try to run the jenkins pipeline(different stages in a pipline) on docker conatiners, docker containers are ease to use, we can modify the dockerfile anytime we want with a desired configuration and can spin up the instance, at some cases we no need of create dockerfile, just we can pull the desired image from dockerhub, we can easily spin-up and tear down the docker conatiners, only if there is request a container is created
+
+docker typically run on a docker daemon process i.e., single-source-of-truth, and by default this daemon process isn't accessible by other users, so we need grant the access to docker daemon
 
 
 
