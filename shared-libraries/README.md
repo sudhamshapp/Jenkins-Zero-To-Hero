@@ -1,4 +1,4 @@
-# Shared Libraries
+# Shared Libraries(majorly comprises of vars, src and resource)
 
 In Jenkins, a shared library is a way to store commonly used code(reusable code), such as scripts or functions, that can be used by different 
 Jenkins pipelines. 
@@ -18,3 +18,6 @@ Think of it like a library of books, Instead of buying the same book over and ov
 - Reduce the risk of errors
 
 ![Screenshot 2023-05-02 at 9 47 24 PM](https://user-images.githubusercontent.com/43399466/235724851-90a5cad6-ac0d-428b-9944-93fffea55180.png)
+
+
+manage jenkins>configure system>global pipeline libraries(add the git repository url where you created the library, by default when we provide this, jenkins controller  look for vars folder) 
