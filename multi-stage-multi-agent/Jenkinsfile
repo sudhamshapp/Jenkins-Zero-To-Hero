@@ -21,15 +21,15 @@ pipeline {
         sh 'node --version'
       }
     }
-    stage('Databse') {
-      agent {
-        docker { 
-          image 'mysql:latest' 
-        }
-      }
-      steps {
-        sh 'select * from table'
-      }
-    }
+    // stage('Databse') {
+    //   agent {
+    //     docker { 
+    //       image 'mysql:latest' 
+    //     }
+    //   }
+    //   steps {
+    //     sh 'select * from table'
+    //   }
+    // }
   }
 }
