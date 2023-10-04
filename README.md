@@ -139,7 +139,7 @@ The docker agent configuration is now successful.
 
 Differences
 mvn clean install - if we wanna push enterprise archive, jar/war archive to the artifactory like nexus/jfrog.
-mvn clean package - if we don't have a plan to push on to the artifactory, in my case I don't wanna  the the artifact anywhere, I just wanna use in the docker image and publish onto the image repository like dockerhub/ecr
+mvn clean package - if we don't have a plan to push on to the artifactory, in my case I don't wanna push the artifact anywhere, I just wanna use in the docker image and publish onto the image repository like dockerhub/ecr
 mvn clean install or mvn clean package look for the pom.xml filepush
 pom.xml in a nutshell - is responsible for getting the dependencies runtime and building the application
 inside the target folder the artifact is stored
@@ -155,6 +155,9 @@ in some cases, if your application is a database application this container appr
 
 
 docker typically run on a docker daemon process i.e., single-source-of-truth, and by default this daemon process isn't accessible by other users, so we need grant the access to docker daemon
+
+in pipeline stuff, if jenkins wanna talk to the sonar it should have authentication token and url of the sonar
+mvn sonar:sonar - executes the sonar target
 
 
 
