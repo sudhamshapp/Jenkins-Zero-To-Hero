@@ -26,12 +26,12 @@ Pre-Requisites:
  - Java (JDK)
 
 ### Run the below commands to install Java and Jenkins
-
+Run all these commands as a ubuntu user
 Install Java
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jre
+sudo apt install openjdk-11-jre -y
 ```
 
 Verify Java is Installed
@@ -114,16 +114,19 @@ Run the below command to Install Docker
 
 ```
 sudo apt update
-sudo apt install docker.io -y
+sudo apt install docker.io -y - Run this on same machine where jenkins is installed
+you can also do it in another way installing docker on another ec2 machine but we need to configure the docker installed machine as a slave to the master jenkins
+
 ```
  
 ### Grant Jenkins user and Ubuntu user permission to docker deamon.
 
 ```
 sudo su - 
-usermod -aG docker jenkins  - granting the permissions to the jenkins users, to create/run containers and pull the images
-usermod -aG docker ubuntu
+usermod -aG docker jenkins  - granting the permissions to the jenkins users, to create/run containers and pull the images(jenkins basically comes with the user called jenkins user) - cat /etc/passwd
+usermod -aG docker ubuntu - usermod is to grant the access to the jenkins, just making it to the part of docker group, docker installation creates a group called docker
 systemctl restart docker
+su - jenkins (we can run the docker commands on jenkins)- jenkins users is also about to create the containers and build the images as well
 ```
 
 Once you are done with the above steps, it is better to restart Jenkins.
@@ -143,7 +146,13 @@ inside the target folder the artifact is stored
 
 only use the jenkins-master for scheduling purpose and run actual worloads on jenkins-slaves(it's a traditional approach)
 
+PROS:
 use jenkins-master with docker as agents, will try to run the jenkins pipeline(different stages in a pipline) on docker conatiners, docker containers are ease to use, we can modify the dockerfile anytime we want with a desired configuration and can spin up the instance, at some cases we no need of create dockerfile, just we can pull the desired image from dockerhub, we can easily spin-up and tear down the docker conatiners, only if there is request a container is created
+we used docker as agents in jenkins project setup in terms of cost and efficiency(spinning up and tearing down the docker containers when it's desired)
+
+CONS:
+in some cases, if your application is a database application this container approach might not work
+
 
 docker typically run on a docker daemon process i.e., single-source-of-truth, and by default this daemon process isn't accessible by other users, so we need grant the access to docker daemon
 
