@@ -45,7 +45,7 @@ pipeline {
         }
       }
     }
-    stage('Update Deployment File') {
+    stage('Update Deployment File') { //here we can either use argo image updater as well as shell scripts but we're using the shell scripts
         environment {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
             GIT_USER_NAME = "sudhamshapp"
