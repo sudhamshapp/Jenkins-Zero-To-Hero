@@ -159,6 +159,8 @@ docker typically run on a docker daemon process i.e., single-source-of-truth, an
 in pipeline stuff, if jenkins wanna talk to the sonar it should have authentication token and url of the sonar
 mvn sonar:sonar - executes the sonar target
 
+in jenkins for adding the credentials for github use the secret text option, username and password won't be there for github from august 2021
+
 
 
 
