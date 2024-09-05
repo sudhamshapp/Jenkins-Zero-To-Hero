@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: sudhamshapp/ultimate-cicd:3
+        image: sudhamshapp/ultimate-cicd-argocd-of-sudhamsh:3
         ports:
         - containerPort: 8080
