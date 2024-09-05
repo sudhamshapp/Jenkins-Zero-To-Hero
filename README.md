@@ -161,6 +161,8 @@ mvn sonar:sonar - executes the sonar target
 
 in jenkins for adding the credentials for github use the secret text option, username and password won't be there for github from august 2021
 
+this is the test push
+
 
 
 
