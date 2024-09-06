@@ -61,6 +61,24 @@ pipeline {
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
+                // sh '''
+                //     git config user.email "sudhamsh1996@gmail.com"
+                //     git config user.name "Sudhamsh"
+
+                //     # Pull the latest changes from the main branch to ensure we're working with the latest deployment.yml
+                //     git checkout main
+                //     git pull https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} main
+
+                //     # Replace the existing image tag version with the latest BUILD_NUMBER
+                //     # Format: 'sudhamshapp/ultimate-cicd-argocd-of-sudhamsh:<version>'
+                //     sed -i "s/sudhamshapp\\/ultimate-cicd-argocd-of-sudhamsh:[0-9]*/sudhamshapp\\/ultimate-cicd-argocd-of-sudhamsh:${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+
+                //     # Stage, commit, and push the changes
+                //     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                //     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                //     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                // '''            
+            
             }
         }
     }
